@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FootballManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="12" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChangeRoom">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomNumber" Type="nvarchar" MaxLength="25" />
+    <Property Name="StatusRoom" Type="bit" />
+  </EntityType>
+  <EntityType Name="RezervationStation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomID" Type="int" Nullable="false" />
+    <Property Name="WorkerID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Station">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StationNumber" Type="int" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="RoomID" Type="int" Nullable="false" />
+    <Property Name="Price" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Worker">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <Association Name="FK_RezervationStation_ChangeRoom">
+    <End Role="ChangeRoom" Type="Self.ChangeRoom" Multiplicity="1" />
+    <End Role="RezervationStation" Type="Self.RezervationStation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChangeRoom">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RezervationStation">
+        <PropertyRef Name="WorkerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RezervationStation_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="RezervationStation" Type="Self.RezervationStation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RezervationStation">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RezervationStation_Worker">
+    <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+    <End Role="RezervationStation" Type="Self.RezervationStation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RezervationStation">
+        <PropertyRef Name="WorkerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Station_ChangeRoom">
+    <End Role="ChangeRoom" Type="Self.ChangeRoom" Multiplicity="1" />
+    <End Role="Station" Type="Self.Station" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChangeRoom">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Station">
+        <PropertyRef Name="RoomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FootballManagerModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChangeRoom" EntityType="Self.ChangeRoom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RezervationStation" EntityType="Self.RezervationStation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Station" EntityType="Self.Station" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_RezervationStation_ChangeRoom" Association="Self.FK_RezervationStation_ChangeRoom">
+      <End Role="ChangeRoom" EntitySet="ChangeRoom" />
+      <End Role="RezervationStation" EntitySet="RezervationStation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RezervationStation_Users" Association="Self.FK_RezervationStation_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RezervationStation" EntitySet="RezervationStation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RezervationStation_Worker" Association="Self.FK_RezervationStation_Worker">
+      <End Role="Worker" EntitySet="Worker" />
+      <End Role="RezervationStation" EntitySet="RezervationStation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Station_ChangeRoom" Association="Self.FK_Station_ChangeRoom">
+      <End Role="ChangeRoom" EntitySet="ChangeRoom" />
+      <End Role="Station" EntitySet="Station" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

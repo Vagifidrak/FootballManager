@@ -1,0 +1,15 @@
+C:\Users\МММ\source\repos\FootballManager\FootballManager\bin\Debug\FootballManager.exe.config
+C:\Users\МММ\source\repos\FootballManager\FootballManager\bin\Debug\FootballManager.exe
+C:\Users\МММ\source\repos\FootballManager\FootballManager\bin\Debug\FootballManager.pdb
+C:\Users\МММ\source\repos\FootballManager\FootballManager\bin\Debug\EntityFramework.dll
+C:\Users\МММ\source\repos\FootballManager\FootballManager\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\МММ\source\repos\FootballManager\FootballManager\bin\Debug\EntityFramework.xml
+C:\Users\МММ\source\repos\FootballManager\FootballManager\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.csprojAssemblyReference.cache
+C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.Properties.Resources.resources
+C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.csproj.GenerateResource.cache
+C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.csproj.CopyComplete
+C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.exe
+C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.pdb
+C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.FootballManagerApp.resources
+C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.WorkerFormC.resources
