@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="FootballManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Admin">
     <Key>
       <PropertyRef Name="ID" />
@@ -15,31 +15,35 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="RoomNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="StatusRoom" Type="Boolean" />
-    <NavigationProperty Name="RezervationStations" Relationship="Self.FK_RezervationStation_ChangeRoom" FromRole="ChangeRoom" ToRole="RezervationStation" />
-    <NavigationProperty Name="Stations" Relationship="Self.FK_Station_ChangeRoom" FromRole="ChangeRoom" ToRole="Station" />
+    <Property Name="StationID" Type="Int32" Nullable="false" />
+    <Property Name="StartDateRoom" Type="DateTime" Precision="3" />
+    <Property Name="EndDateRoom" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Station" Relationship="Self.FK_ChangeRoom_Station" FromRole="ChangeRoom" ToRole="Station" />
   </EntityType>
   <EntityType Name="RezervationStation">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="RoomID" Type="Int32" Nullable="false" />
+    <Property Name="StationID" Type="Int32" Nullable="false" />
     <Property Name="WorkerID" Type="Int32" Nullable="false" />
     <Property Name="UserID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="ChangeRoom" Relationship="Self.FK_RezervationStation_ChangeRoom" FromRole="RezervationStation" ToRole="ChangeRoom" />
+    <NavigationProperty Name="Station" Relationship="Self.FK_RezervationStation_Station" FromRole="RezervationStation" ToRole="Station" />
     <NavigationProperty Name="User" Relationship="Self.FK_RezervationStation_Users" FromRole="RezervationStation" ToRole="Users" />
     <NavigationProperty Name="Worker" Relationship="Self.FK_RezervationStation_Worker" FromRole="RezervationStation" ToRole="Worker" />
+    <Property Name="StartResDate" Type="DateTime" Precision="3" />
+    <Property Name="EndResDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Station">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="StationNumber" Type="Int32" />
+    <Property Name="StationNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="Boolean" />
-    <Property Name="RoomID" Type="Int32" Nullable="false" />
     <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="ChangeRoom" Relationship="Self.FK_Station_ChangeRoom" FromRole="Station" ToRole="ChangeRoom" />
+    <NavigationProperty Name="ChangeRooms" Relationship="Self.FK_ChangeRoom_Station" FromRole="Station" ToRole="ChangeRoom" />
+    <NavigationProperty Name="RezervationStations" Relationship="Self.FK_RezervationStation_Station" FromRole="Station" ToRole="RezervationStation" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -61,27 +65,27 @@
     <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="RezervationStations" Relationship="Self.FK_RezervationStation_Worker" FromRole="Worker" ToRole="RezervationStation" />
   </EntityType>
-  <Association Name="FK_RezervationStation_ChangeRoom">
-    <End Role="ChangeRoom" Type="Self.ChangeRoom" Multiplicity="1" />
-    <End Role="RezervationStation" Type="Self.RezervationStation" Multiplicity="*" />
+  <Association Name="FK_ChangeRoom_Station">
+    <End Role="Station" Type="Self.Station" Multiplicity="1" />
+    <End Role="ChangeRoom" Type="Self.ChangeRoom" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ChangeRoom">
+      <Principal Role="Station">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="RezervationStation">
-        <PropertyRef Name="WorkerID" />
+      <Dependent Role="ChangeRoom">
+        <PropertyRef Name="StationID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Station_ChangeRoom">
-    <End Role="ChangeRoom" Type="Self.ChangeRoom" Multiplicity="1" />
-    <End Role="Station" Type="Self.Station" Multiplicity="*" />
+  <Association Name="FK_RezervationStation_Station">
+    <End Role="Station" Type="Self.Station" Multiplicity="1" />
+    <End Role="RezervationStation" Type="Self.RezervationStation" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ChangeRoom">
+      <Principal Role="Station">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Station">
-        <PropertyRef Name="RoomID" />
+      <Dependent Role="RezervationStation">
+        <PropertyRef Name="StationID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -116,13 +120,13 @@
     <EntitySet Name="Stations" EntityType="Self.Station" />
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="Workers" EntityType="Self.Worker" />
-    <AssociationSet Name="FK_RezervationStation_ChangeRoom" Association="Self.FK_RezervationStation_ChangeRoom">
-      <End Role="ChangeRoom" EntitySet="ChangeRooms" />
-      <End Role="RezervationStation" EntitySet="RezervationStations" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Station_ChangeRoom" Association="Self.FK_Station_ChangeRoom">
-      <End Role="ChangeRoom" EntitySet="ChangeRooms" />
+    <AssociationSet Name="FK_ChangeRoom_Station" Association="Self.FK_ChangeRoom_Station">
       <End Role="Station" EntitySet="Stations" />
+      <End Role="ChangeRoom" EntitySet="ChangeRooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RezervationStation_Station" Association="Self.FK_RezervationStation_Station">
+      <End Role="Station" EntitySet="Stations" />
+      <End Role="RezervationStation" EntitySet="RezervationStations" />
     </AssociationSet>
     <AssociationSet Name="FK_RezervationStation_Users" Association="Self.FK_RezervationStation_Users">
       <End Role="Users" EntitySet="Users" />

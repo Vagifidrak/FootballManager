@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WorkerFormC));
             this.btnExit = new System.Windows.Forms.Button();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.btnEnter = new System.Windows.Forms.Button();
@@ -39,9 +38,13 @@
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.lblPhone = new System.Windows.Forms.Label();
             this.cmbStadium = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblStation = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbChangeRoom = new System.Windows.Forms.ComboBox();
+            this.dtgStart = new System.Windows.Forms.DateTimePicker();
+            this.dtgEnd = new System.Windows.Forms.DateTimePicker();
+            this.lblStart = new System.Windows.Forms.Label();
+            this.lblEnd = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnExit
@@ -79,11 +82,11 @@
             this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnEnter.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnEnter.Location = new System.Drawing.Point(82, 529);
+            this.btnEnter.Location = new System.Drawing.Point(535, 558);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(198, 72);
             this.btnEnter.TabIndex = 13;
-            this.btnEnter.Text = "Rezervation";
+            this.btnEnter.Text = "Registration";
             this.btnEnter.UseVisualStyleBackColor = false;
             this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
             // 
@@ -140,7 +143,7 @@
             this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.txtPhone.Location = new System.Drawing.Point(46, 416);
+            this.txtPhone.Location = new System.Drawing.Point(46, 429);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(312, 37);
             this.txtPhone.TabIndex = 17;
@@ -153,7 +156,7 @@
             this.lblPhone.BackColor = System.Drawing.Color.Transparent;
             this.lblPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblPhone.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblPhone.Location = new System.Drawing.Point(41, 384);
+            this.lblPhone.Location = new System.Drawing.Point(41, 395);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(83, 29);
             this.lblPhone.TabIndex = 16;
@@ -163,26 +166,28 @@
             // 
             this.cmbStadium.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmbStadium.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStadium.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.cmbStadium.FormattingEnabled = true;
             this.cmbStadium.Location = new System.Drawing.Point(578, 137);
             this.cmbStadium.Name = "cmbStadium";
-            this.cmbStadium.Size = new System.Drawing.Size(312, 38);
+            this.cmbStadium.Size = new System.Drawing.Size(416, 38);
             this.cmbStadium.TabIndex = 18;
+            this.cmbStadium.SelectedIndexChanged += new System.EventHandler(this.cmbStadium_SelectedIndexChanged);
             // 
-            // label1
+            // lblStation
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblStation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.ForeColor = System.Drawing.SystemColors.Info;
-            this.label1.Location = new System.Drawing.Point(573, 105);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 29);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Stadium";
+            this.lblStation.AutoSize = true;
+            this.lblStation.BackColor = System.Drawing.Color.Transparent;
+            this.lblStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblStation.ForeColor = System.Drawing.SystemColors.Info;
+            this.lblStation.Location = new System.Drawing.Point(573, 105);
+            this.lblStation.Name = "lblStation";
+            this.lblStation.Size = new System.Drawing.Size(87, 29);
+            this.lblStation.TabIndex = 19;
+            this.lblStation.Text = "Station";
             // 
             // label2
             // 
@@ -192,7 +197,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label2.ForeColor = System.Drawing.SystemColors.Info;
-            this.label2.Location = new System.Drawing.Point(573, 240);
+            this.label2.Location = new System.Drawing.Point(573, 209);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(162, 29);
             this.label2.TabIndex = 21;
@@ -202,23 +207,73 @@
             // 
             this.cmbChangeRoom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmbChangeRoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbChangeRoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.cmbChangeRoom.FormattingEnabled = true;
-            this.cmbChangeRoom.Location = new System.Drawing.Point(578, 272);
+            this.cmbChangeRoom.Location = new System.Drawing.Point(578, 241);
             this.cmbChangeRoom.Name = "cmbChangeRoom";
-            this.cmbChangeRoom.Size = new System.Drawing.Size(312, 38);
+            this.cmbChangeRoom.Size = new System.Drawing.Size(416, 38);
             this.cmbChangeRoom.TabIndex = 20;
+            // 
+            // dtgStart
+            // 
+            this.dtgStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.dtgStart.Location = new System.Drawing.Point(578, 345);
+            this.dtgStart.Name = "dtgStart";
+            this.dtgStart.Size = new System.Drawing.Size(416, 35);
+            this.dtgStart.TabIndex = 22;
+            // 
+            // dtgEnd
+            // 
+            this.dtgEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.dtgEnd.Location = new System.Drawing.Point(578, 440);
+            this.dtgEnd.Name = "dtgEnd";
+            this.dtgEnd.Size = new System.Drawing.Size(416, 35);
+            this.dtgEnd.TabIndex = 23;
+            // 
+            // lblStart
+            // 
+            this.lblStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblStart.AutoSize = true;
+            this.lblStart.BackColor = System.Drawing.Color.Transparent;
+            this.lblStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblStart.ForeColor = System.Drawing.SystemColors.Info;
+            this.lblStart.Location = new System.Drawing.Point(573, 313);
+            this.lblStart.Name = "lblStart";
+            this.lblStart.Size = new System.Drawing.Size(196, 29);
+            this.lblStart.TabIndex = 24;
+            this.lblStart.Text = "Reservation Start";
+            // 
+            // lblEnd
+            // 
+            this.lblEnd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblEnd.AutoSize = true;
+            this.lblEnd.BackColor = System.Drawing.Color.Transparent;
+            this.lblEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblEnd.ForeColor = System.Drawing.SystemColors.Info;
+            this.lblEnd.Location = new System.Drawing.Point(573, 408);
+            this.lblEnd.Name = "lblEnd";
+            this.lblEnd.Size = new System.Drawing.Size(190, 29);
+            this.lblEnd.TabIndex = 25;
+            this.lblEnd.Text = "Reservation End";
             // 
             // WorkerFormC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(1258, 711);
+            this.Controls.Add(this.lblEnd);
+            this.Controls.Add(this.lblStart);
+            this.Controls.Add(this.dtgEnd);
+            this.Controls.Add(this.dtgStart);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbChangeRoom);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblStation);
             this.Controls.Add(this.cmbStadium);
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.lblPhone);
@@ -231,7 +286,6 @@
             this.Controls.Add(this.btnExit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "WorkerFormC";
-            this.Opacity = 0.9D;
             this.Text = "WorkerFormC";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.WorkerFormC_Load);
@@ -252,8 +306,12 @@
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.ComboBox cmbStadium;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblStation;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbChangeRoom;
+        private System.Windows.Forms.DateTimePicker dtgStart;
+        private System.Windows.Forms.DateTimePicker dtgEnd;
+        private System.Windows.Forms.Label lblStart;
+        private System.Windows.Forms.Label lblEnd;
     }
 }

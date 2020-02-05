@@ -7,19 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FootballManager.Modal
+namespace FootballManager.modal
 {
     using System;
     using System.Collections.Generic;
     
     public partial class Station
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Station()
+        {
+            this.ChangeRooms = new HashSet<ChangeRoom>();
+            this.RezervationStations = new HashSet<RezervationStation>();
+        }
+    
         public int ID { get; set; }
-        public Nullable<int> StationNumber { get; set; }
+        public string StationNumber { get; set; }
         public Nullable<bool> Status { get; set; }
-        public int RoomID { get; set; }
         public string Price { get; set; }
     
-        public virtual ChangeRoom ChangeRoom { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChangeRoom> ChangeRooms { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RezervationStation> RezervationStations { get; set; }
     }
 }

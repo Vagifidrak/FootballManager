@@ -1,4 +1,4 @@
-﻿using FootballManager.Modal;
+﻿using FootballManager.modal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,11 +43,11 @@ namespace FootballManager
             string password = txtPassword.Text;
             if (login != "" && password != "")
             {
-                Admin selectAdm = DB.Admins.FirstOrDefault(sadm => sadm.Login == login && sadm.Password == password);
-                if (selectAdm!=null)
-                {
-                    // Admin girdiyi Form elave etdikden sonra bu hisseni yazmaq
-                };
+                //Admin selectAdm = DB.Admins.FirstOrDefault(sadm => sadm.Login == login && sadm.Password == password);
+                //if (selectAdm!=null)
+                //{
+                //    // Admin girdiyi Form elave etdikden sonra bu hisseni yazmaq
+                //};
 
 
                 Worker selectWrk = DB.Workers.FirstOrDefault(swrk => swrk.FullName == login && swrk.Password == password);
@@ -55,7 +55,7 @@ namespace FootballManager
                 {
                     if (selectWrk.Password == password)
                     {
-                        WorkerFormC Wrkform = new WorkerFormC();
+                        WorkerFormC Wrkform = new WorkerFormC(selectWrk);
                         Wrkform.ShowDialog();
                     }
                 }
@@ -68,8 +68,6 @@ namespace FootballManager
                 lblError.Text = "Butun xanalari doldurun";
                 lblError.Visible = true;
             }
-            
-
         }
         #endregion
     }

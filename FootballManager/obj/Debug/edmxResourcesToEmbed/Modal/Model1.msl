@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="FootballManagerModelStoreContainer" CdmEntityContainer="FootballManagerDB">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="FootballManagerDB">
     <EntitySetMapping Name="Admins">
-      <EntityTypeMapping TypeName="FootballManagerModel.Admin">
+      <EntityTypeMapping TypeName="Model.Admin">
         <MappingFragment StoreEntitySet="Admin">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Login" ColumnName="Login" />
@@ -11,37 +11,41 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ChangeRooms">
-      <EntityTypeMapping TypeName="FootballManagerModel.ChangeRoom">
+      <EntityTypeMapping TypeName="Model.ChangeRoom">
         <MappingFragment StoreEntitySet="ChangeRoom">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
           <ScalarProperty Name="StatusRoom" ColumnName="StatusRoom" />
+          <ScalarProperty Name="StationID" ColumnName="StationID" />
+          <ScalarProperty Name="StartDateRoom" ColumnName="StartDateRoom" />
+          <ScalarProperty Name="EndDateRoom" ColumnName="EndDateRoom" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RezervationStations">
-      <EntityTypeMapping TypeName="FootballManagerModel.RezervationStation">
+      <EntityTypeMapping TypeName="Model.RezervationStation">
         <MappingFragment StoreEntitySet="RezervationStation">
+          <ScalarProperty Name="EndResDate" ColumnName="EndResDate" />
+          <ScalarProperty Name="StartResDate" ColumnName="StartResDate" />
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+          <ScalarProperty Name="StationID" ColumnName="StationID" />
           <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Stations">
-      <EntityTypeMapping TypeName="FootballManagerModel.Station">
+      <EntityTypeMapping TypeName="Model.Station">
         <MappingFragment StoreEntitySet="Station">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="StationNumber" ColumnName="StationNumber" />
           <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="RoomID" ColumnName="RoomID" />
           <ScalarProperty Name="Price" ColumnName="Price" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="FootballManagerModel.User">
+      <EntityTypeMapping TypeName="Model.User">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -51,7 +55,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Workers">
-      <EntityTypeMapping TypeName="FootballManagerModel.Worker">
+      <EntityTypeMapping TypeName="Model.Worker">
         <MappingFragment StoreEntitySet="Worker">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="FullName" ColumnName="FullName" />

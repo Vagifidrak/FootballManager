@@ -62,37 +62,37 @@
       <DependentUpon>FootballManagerApp.cs</DependentUpon>
     </Compile>
     <Compile Include="MainExtansion.cs" />
-    <Compile Include="Modal\Admin.cs">
+    <Compile Include="modal\Admin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modal\ChangeRoom.cs">
+    <Compile Include="modal\ChangeRoom.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modal\Model1.Context.cs">
+    <Compile Include="modal\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modal\Model1.cs">
+    <Compile Include="modal\Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modal\Model1.Designer.cs">
+    <Compile Include="modal\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Modal\RezervationStation.cs">
+    <Compile Include="modal\RezervationStation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modal\Station.cs">
+    <Compile Include="modal\Station.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modal\User.cs">
+    <Compile Include="modal\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modal\Worker.cs">
+    <Compile Include="modal\Worker.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -118,11 +118,11 @@
     <EmbeddedResource Include="WorkerFormC.resx">
       <DependentUpon>WorkerFormC.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="Modal\Model1.edmx">
+    <EntityDeploy Include="modal\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Modal\Model1.edmx.diagram">
+    <None Include="modal\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -143,12 +143,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Modal\Model1.Context.tt">
+    <Content Include="modal\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Modal\Model1.tt">
+    <Content Include="modal\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>

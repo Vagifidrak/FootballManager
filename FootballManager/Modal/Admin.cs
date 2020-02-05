@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FootballManager.Modal
+namespace FootballManager.modal
 {
     using System;
     using System.Collections.Generic;
