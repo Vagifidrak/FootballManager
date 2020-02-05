@@ -55,11 +55,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FootballManagerApp.cs">
+    <Compile Include="AddWorkerDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FootballManagerApp.Designer.cs">
-      <DependentUpon>FootballManagerApp.cs</DependentUpon>
+    <Compile Include="AddWorkerDashboard.Designer.cs">
+      <DependentUpon>AddWorkerDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminDashboard.Designer.cs">
+      <DependentUpon>AdminDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnterStationApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnterStationApp.Designer.cs">
+      <DependentUpon>EnterStationApp.cs</DependentUpon>
     </Compile>
     <Compile Include="MainExtansion.cs" />
     <Compile Include="modal\Admin.cs">
@@ -103,8 +115,14 @@
     <Compile Include="WorkerFormC.Designer.cs">
       <DependentUpon>WorkerFormC.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FootballManagerApp.resx">
-      <DependentUpon>FootballManagerApp.cs</DependentUpon>
+    <EmbeddedResource Include="AddWorkerDashboard.resx">
+      <DependentUpon>AddWorkerDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminDashboard.resx">
+      <DependentUpon>AdminDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnterStationApp.resx">
+      <DependentUpon>EnterStationApp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -16,7 +16,7 @@ namespace FootballManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FootballManagerApp());
+            Application.Run(new EnterStationApp());
         }
     }
 }

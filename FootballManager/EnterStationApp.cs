@@ -11,15 +11,14 @@ using System.Windows.Forms;
 
 namespace FootballManager
 {
-    public partial class FootballManagerApp : Form
+    public partial class EnterStationApp : Form
     {
-        FootballManagerDB DB;                       // DataBaza
-        public FootballManagerApp()
+        FootballManagerDB DB;
+        public EnterStationApp()
         {
             DB = new FootballManagerDB();
             InitializeComponent();
         }
-
         #region Exit Button
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -43,11 +42,15 @@ namespace FootballManager
             string password = txtPassword.Text;
             if (login != "" && password != "")
             {
-                //Admin selectAdm = DB.Admins.FirstOrDefault(sadm => sadm.Login == login && sadm.Password == password);
-                //if (selectAdm!=null)
-                //{
-                //    // Admin girdiyi Form elave etdikden sonra bu hisseni yazmaq
-                //};
+                Admin selectAdm = DB.Admins.FirstOrDefault(sadm => sadm.Login == login && sadm.Password == password);
+                if (selectAdm != null)
+                {
+                    if (selectAdm.Password == password)
+                    {
+                        AdminDashboard AdmForm = new AdminDashboard();
+                        AdmForm.ShowDialog();
+                    }
+                };
 
 
                 Worker selectWrk = DB.Workers.FirstOrDefault(swrk => swrk.FullName == login && swrk.Password == password);
@@ -64,11 +67,18 @@ namespace FootballManager
                     lblError.Text = "Parol sehfdir";
                 }
             }
-            else {
+            else
+            {
                 lblError.Text = "Butun xanalari doldurun";
                 lblError.Visible = true;
             }
         }
+
         #endregion
+
+        private void btnExit_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

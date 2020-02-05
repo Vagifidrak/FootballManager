@@ -11,5 +11,7 @@ C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballM
 C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.csproj.CopyComplete
 C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.exe
 C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.pdb
-C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.FootballManagerApp.resources
 C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.WorkerFormC.resources
+C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.AdminDashboard.resources
+C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.AddWorkerDashboard.resources
+C:\Users\МММ\source\repos\FootballManager\FootballManager\obj\Debug\FootballManager.EnterStationApp.resources
