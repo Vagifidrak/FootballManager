@@ -15,6 +15,8 @@ namespace FootballManager
     {
         Worker worky;
         FootballManagerDB DB;
+        Station selectStat=null;
+        User selectUser = null;
 
         public WorkerFormC(Worker saxta)
         {
@@ -27,6 +29,26 @@ namespace FootballManager
         {
             this.Close();
         }
+        #endregion
+
+        #region Button Reservation-Edit-Delete
+        private void BtnEdDel(string txt)
+        {
+            if (txt == "add")
+            {
+
+                btnEnter.Visible = true;
+                btnDelete.Visible = false;
+                btnEdit.Visible = false;
+            }
+            else
+            {
+                btnEnter.Visible = false;
+                btnDelete.Visible = true;
+                btnEdit.Visible = true;
+            }
+        }
+
         #endregion
 
 
@@ -46,6 +68,19 @@ namespace FootballManager
             lblWelcome.Text = "Welcome to football manager";
             lblWelcome.Visible = true;
 
+            dtgStat.DataSource = DB.RezervationStations.Select(rs => new
+            {
+                rs.ID,
+                rs.User.FirstName,
+                rs.User.LastName,
+                rs.User.Phone,
+                rs.Station.StationNumber,
+                rs.Station.ChangeRooms.Count,
+                rs.StartResDate,
+                rs.EndResDate
+
+            }).ToList();
+            dtgStat.Columns[0].Visible = false;
 
             FillcmbStadium();
             FillcmbRoom();
@@ -76,9 +111,8 @@ namespace FootballManager
                 {
                     FirstName = frsName,
                     LastName = lstName,
-                    Phone = phone
-                });
-
+                    Phone = phone,
+               });
 
                 DB.SaveChanges();
             }
@@ -109,12 +143,29 @@ namespace FootballManager
             {
                 newReserv = DB.RezervationStations.FirstOrDefault(rst => rst.StartResDate == StartDat);
             }
-            MessageBox.Show("Ne var hamsi elave olundu zadini cek");
+            MessageBox.Show("Add new Reservation success","sucess",MessageBoxButtons.OK,MessageBoxIcon.Information);
             DB.SaveChanges();
         }
 
         #endregion
 
+        private void dtgStat_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int statid = (int)dtgStat.Rows[e.RowIndex].Cells[3].Value;
+            int userid = (int)dtgStat.Rows[e.RowIndex].Cells[0].Value;
+            string dtid =Convert.ToString(dtgStat.Rows[e.RowIndex].Cells[5].Value);
+            string selectDat = DB.RezervationStations.FirstOrDefault(dt => dt.StartResDate = dtid);// nese problem qalir bu hisseni duzeltmek
+            selectUser = DB.Users.FirstOrDefault(us => us.ID == statid);
+            selectStat = DB.Stations.FirstOrDefault(sst => sst.ID == statid);
+            cmbStadium.Text = selectStat.StationNumber;
+            cmbStadium.Text = Convert.ToString(selectStat.StationNumber);
+            cmbChangeRoom.Text = Convert.ToString(selectStat.ChangeRooms.Count);
+            txtFrsName.Text = selectUser.FirstName;
+            txtLastName.Text = selectUser.LastName;
+            txtPhone.Text = selectUser.Phone;
+
+            BtnEdDel("xtx");
+        }
     }
 
 }

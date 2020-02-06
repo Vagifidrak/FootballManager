@@ -39,5 +39,11 @@ namespace FootballManager
             fma.ShowDialog();
 
         }
+
+        private void AdminDashboard_Load(object sender, EventArgs e)
+        {
+            lblWelcome.Text = "Welcome Admin";
+            lblWelcome.Visible = true;
+        }
     }
 }

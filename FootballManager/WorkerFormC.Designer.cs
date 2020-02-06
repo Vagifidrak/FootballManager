@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WorkerFormC));
             this.btnExit = new System.Windows.Forms.Button();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.btnEnter = new System.Windows.Forms.Button();
@@ -45,6 +46,10 @@
             this.dtgEnd = new System.Windows.Forms.DateTimePicker();
             this.lblStart = new System.Windows.Forms.Label();
             this.lblEnd = new System.Windows.Forms.Label();
+            this.dtgStat = new System.Windows.Forms.DataGridView();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgStat)).BeginInit();
             this.SuspendLayout();
             // 
             // btnExit
@@ -53,10 +58,11 @@
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Mistral", 13F, System.Drawing.FontStyle.Bold);
             this.btnExit.ForeColor = System.Drawing.Color.Red;
-            this.btnExit.Location = new System.Drawing.Point(1128, 12);
+            this.btnExit.Location = new System.Drawing.Point(1199, 12);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(118, 40);
+            this.btnExit.Size = new System.Drawing.Size(144, 52);
             this.btnExit.TabIndex = 7;
             this.btnExit.Text = "EXIT";
             this.btnExit.UseVisualStyleBackColor = false;
@@ -66,7 +72,7 @@
             this.lblWelcome.AutoSize = true;
             this.lblWelcome.BackColor = System.Drawing.Color.Transparent;
             this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F);
-            this.lblWelcome.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblWelcome.ForeColor = System.Drawing.Color.DarkGreen;
             this.lblWelcome.Location = new System.Drawing.Point(12, 9);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(299, 73);
@@ -82,11 +88,11 @@
             this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnEnter.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnEnter.Location = new System.Drawing.Point(535, 558);
+            this.btnEnter.Location = new System.Drawing.Point(551, 492);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(198, 72);
             this.btnEnter.TabIndex = 13;
-            this.btnEnter.Text = "Registration";
+            this.btnEnter.Text = "Reservation";
             this.btnEnter.UseVisualStyleBackColor = false;
             this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
             // 
@@ -97,7 +103,7 @@
             this.txtFrsName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.txtFrsName.Location = new System.Drawing.Point(46, 137);
             this.txtFrsName.Name = "txtFrsName";
-            this.txtFrsName.Size = new System.Drawing.Size(312, 37);
+            this.txtFrsName.Size = new System.Drawing.Size(416, 37);
             this.txtFrsName.TabIndex = 11;
             // 
             // lblLogin
@@ -107,7 +113,7 @@
             this.lblLogin.AutoSize = true;
             this.lblLogin.BackColor = System.Drawing.Color.Transparent;
             this.lblLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblLogin.ForeColor = System.Drawing.SystemColors.Info;
+            this.lblLogin.ForeColor = System.Drawing.Color.DarkGreen;
             this.lblLogin.Location = new System.Drawing.Point(41, 105);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(131, 29);
@@ -119,9 +125,9 @@
             this.txtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.txtLastName.Location = new System.Drawing.Point(46, 273);
+            this.txtLastName.Location = new System.Drawing.Point(46, 234);
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(312, 37);
+            this.txtLastName.Size = new System.Drawing.Size(416, 37);
             this.txtLastName.TabIndex = 15;
             // 
             // lblLastName
@@ -131,8 +137,8 @@
             this.lblLastName.AutoSize = true;
             this.lblLastName.BackColor = System.Drawing.Color.Transparent;
             this.lblLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblLastName.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblLastName.Location = new System.Drawing.Point(41, 241);
+            this.lblLastName.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblLastName.Location = new System.Drawing.Point(41, 202);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(128, 29);
             this.lblLastName.TabIndex = 14;
@@ -143,9 +149,9 @@
             this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.txtPhone.Location = new System.Drawing.Point(46, 429);
+            this.txtPhone.Location = new System.Drawing.Point(46, 335);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(312, 37);
+            this.txtPhone.Size = new System.Drawing.Size(416, 37);
             this.txtPhone.TabIndex = 17;
             // 
             // lblPhone
@@ -155,8 +161,8 @@
             this.lblPhone.AutoSize = true;
             this.lblPhone.BackColor = System.Drawing.Color.Transparent;
             this.lblPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblPhone.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblPhone.Location = new System.Drawing.Point(41, 395);
+            this.lblPhone.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblPhone.Location = new System.Drawing.Point(41, 305);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(83, 29);
             this.lblPhone.TabIndex = 16;
@@ -169,7 +175,7 @@
             this.cmbStadium.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStadium.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.cmbStadium.FormattingEnabled = true;
-            this.cmbStadium.Location = new System.Drawing.Point(578, 137);
+            this.cmbStadium.Location = new System.Drawing.Point(46, 429);
             this.cmbStadium.Name = "cmbStadium";
             this.cmbStadium.Size = new System.Drawing.Size(416, 38);
             this.cmbStadium.TabIndex = 18;
@@ -182,8 +188,8 @@
             this.lblStation.AutoSize = true;
             this.lblStation.BackColor = System.Drawing.Color.Transparent;
             this.lblStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblStation.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblStation.Location = new System.Drawing.Point(573, 105);
+            this.lblStation.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblStation.Location = new System.Drawing.Point(41, 388);
             this.lblStation.Name = "lblStation";
             this.lblStation.Size = new System.Drawing.Size(87, 29);
             this.lblStation.TabIndex = 19;
@@ -196,8 +202,8 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label2.ForeColor = System.Drawing.SystemColors.Info;
-            this.label2.Location = new System.Drawing.Point(573, 209);
+            this.label2.ForeColor = System.Drawing.Color.DarkGreen;
+            this.label2.Location = new System.Drawing.Point(41, 492);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(162, 29);
             this.label2.TabIndex = 21;
@@ -210,7 +216,7 @@
             this.cmbChangeRoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbChangeRoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.cmbChangeRoom.FormattingEnabled = true;
-            this.cmbChangeRoom.Location = new System.Drawing.Point(578, 241);
+            this.cmbChangeRoom.Location = new System.Drawing.Point(46, 524);
             this.cmbChangeRoom.Name = "cmbChangeRoom";
             this.cmbChangeRoom.Size = new System.Drawing.Size(416, 38);
             this.cmbChangeRoom.TabIndex = 20;
@@ -218,7 +224,7 @@
             // dtgStart
             // 
             this.dtgStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.dtgStart.Location = new System.Drawing.Point(578, 345);
+            this.dtgStart.Location = new System.Drawing.Point(46, 628);
             this.dtgStart.Name = "dtgStart";
             this.dtgStart.Size = new System.Drawing.Size(416, 35);
             this.dtgStart.TabIndex = 22;
@@ -226,7 +232,7 @@
             // dtgEnd
             // 
             this.dtgEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.dtgEnd.Location = new System.Drawing.Point(578, 440);
+            this.dtgEnd.Location = new System.Drawing.Point(46, 723);
             this.dtgEnd.Name = "dtgEnd";
             this.dtgEnd.Size = new System.Drawing.Size(416, 35);
             this.dtgEnd.TabIndex = 23;
@@ -238,8 +244,8 @@
             this.lblStart.AutoSize = true;
             this.lblStart.BackColor = System.Drawing.Color.Transparent;
             this.lblStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblStart.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblStart.Location = new System.Drawing.Point(573, 313);
+            this.lblStart.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblStart.Location = new System.Drawing.Point(41, 596);
             this.lblStart.Name = "lblStart";
             this.lblStart.Size = new System.Drawing.Size(196, 29);
             this.lblStart.TabIndex = 24;
@@ -252,21 +258,70 @@
             this.lblEnd.AutoSize = true;
             this.lblEnd.BackColor = System.Drawing.Color.Transparent;
             this.lblEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblEnd.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblEnd.Location = new System.Drawing.Point(573, 408);
+            this.lblEnd.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblEnd.Location = new System.Drawing.Point(41, 691);
             this.lblEnd.Name = "lblEnd";
             this.lblEnd.Size = new System.Drawing.Size(190, 29);
             this.lblEnd.TabIndex = 25;
             this.lblEnd.Text = "Reservation End";
             // 
+            // dtgStat
+            // 
+            this.dtgStat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgStat.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgStat.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dtgStat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgStat.Location = new System.Drawing.Point(551, 138);
+            this.dtgStat.Name = "dtgStat";
+            this.dtgStat.RowHeadersWidth = 62;
+            this.dtgStat.RowTemplate.Height = 28;
+            this.dtgStat.Size = new System.Drawing.Size(764, 329);
+            this.dtgStat.TabIndex = 26;
+            this.dtgStat.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dtgStat_RowHeaderMouseDoubleClick);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.Red;
+            this.btnDelete.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnDelete.ForeColor = System.Drawing.SystemColors.Menu;
+            this.btnDelete.Location = new System.Drawing.Point(774, 492);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(198, 72);
+            this.btnDelete.TabIndex = 27;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Visible = false;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnEdit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnEdit.ForeColor = System.Drawing.SystemColors.MenuBar;
+            this.btnEdit.Location = new System.Drawing.Point(551, 538);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(198, 72);
+            this.btnEdit.TabIndex = 28;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Visible = false;
+            // 
             // WorkerFormC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.BackColor = System.Drawing.Color.Green;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(1258, 711);
+            this.ClientSize = new System.Drawing.Size(1355, 790);
+            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.dtgStat);
             this.Controls.Add(this.lblEnd);
             this.Controls.Add(this.lblStart);
             this.Controls.Add(this.dtgEnd);
@@ -284,11 +339,13 @@
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.lblWelcome);
             this.Controls.Add(this.btnExit);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "WorkerFormC";
             this.Text = "WorkerFormC";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.WorkerFormC_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgStat)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,5 +370,8 @@
         private System.Windows.Forms.DateTimePicker dtgEnd;
         private System.Windows.Forms.Label lblStart;
         private System.Windows.Forms.Label lblEnd;
+        private System.Windows.Forms.DataGridView dtgStat;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnEdit;
     }
 }

@@ -20,9 +20,10 @@ namespace FootballManager
             InitializeComponent();
         }
         #region Exit Button
-        private void btnExit_Click(object sender, EventArgs e)
+        private void btnExit_Click_1(object sender, EventArgs e)
         {
             this.Close();
+
         }
         #endregion
 
@@ -65,6 +66,7 @@ namespace FootballManager
                 else
                 {
                     lblError.Text = "Parol sehfdir";
+                    lblError.Visible = true;
                 }
             }
             else
@@ -74,11 +76,15 @@ namespace FootballManager
             }
         }
 
+
         #endregion
 
-        private void btnExit_Click_1(object sender, EventArgs e)
+        private void EnterStationApp_Load(object sender, EventArgs e)
         {
-
+            lblWelcome.Text = "Welcome";
+            lblWelcome.Visible = true;
         }
+
+
     }
 }
