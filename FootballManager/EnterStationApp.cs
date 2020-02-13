@@ -62,12 +62,14 @@ namespace FootballManager
                         WorkerFormC Wrkform = new WorkerFormC(selectWrk);
                         Wrkform.ShowDialog();
                     }
+
                 }
                 else
                 {
                     lblError.Text = "Parol sehfdir";
                     lblError.Visible = true;
                 }
+
             }
             else
             {

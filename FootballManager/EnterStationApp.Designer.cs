@@ -170,6 +170,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EnterStationApp";
             this.Opacity = 0.95D;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EnterStationApp";
             this.Load += new System.EventHandler(this.EnterStationApp_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pcbFootbal)).EndInit();

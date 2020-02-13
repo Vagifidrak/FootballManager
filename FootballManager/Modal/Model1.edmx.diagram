@@ -4,18 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3f800c03de774f0a9133b39862f90d71" Name="Diagram1" ZoomLevel="64">
-        <EntityTypeShape EntityType="Model.Admin" Width="1.5" PointX="0.875" PointY="6.75" IsExpanded="true" />
+      <Diagram DiagramId="3f800c03de774f0a9133b39862f90d71" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="Model.Admin" Width="1.5" PointX="3.75" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.ChangeRoom" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.RezervationStation" Width="1.5" PointX="6.125" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Station" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Worker" Width="1.5" PointX="4.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Worker" Width="1.5" PointX="6.125" PointY="7.125" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_ChangeRoom_Station" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_RezervationStation_Station" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_RezervationStation_Users" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_RezervationStation_Worker" ManuallyRouted="false" >
         </AssociationConnector>
+        <AssociationConnector Association="Model.FK_RezervationStation_ChangeRoom" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

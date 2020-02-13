@@ -21,8 +21,6 @@
           <Property Name="RoomNumber" Type="nvarchar" MaxLength="25" />
           <Property Name="StatusRoom" Type="bit" />
           <Property Name="StationID" Type="int" Nullable="false" />
-          <Property Name="StartDateRoom" Type="datetime" />
-          <Property Name="EndDateRoom" Type="datetime" />
         </EntityType>
         <EntityType Name="RezervationStation">
           <Key>
@@ -34,6 +32,7 @@
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="StartResDate" Type="datetime" />
           <Property Name="EndResDate" Type="datetime" />
+          <Property Name="RoomID" Type="int" />
         </EntityType>
         <EntityType Name="Station">
           <Key>
@@ -71,6 +70,18 @@
             </Principal>
             <Dependent Role="ChangeRoom">
               <PropertyRef Name="StationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RezervationStation_ChangeRoom">
+          <End Role="ChangeRoom" Type="Self.ChangeRoom" Multiplicity="0..1" />
+          <End Role="RezervationStation" Type="Self.RezervationStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChangeRoom">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RezervationStation">
+              <PropertyRef Name="RoomID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -121,6 +132,10 @@
             <End Role="Station" EntitySet="Station" />
             <End Role="ChangeRoom" EntitySet="ChangeRoom" />
           </AssociationSet>
+          <AssociationSet Name="FK_RezervationStation_ChangeRoom" Association="Self.FK_RezervationStation_ChangeRoom">
+            <End Role="ChangeRoom" EntitySet="ChangeRoom" />
+            <End Role="RezervationStation" EntitySet="RezervationStation" />
+          </AssociationSet>
           <AssociationSet Name="FK_RezervationStation_Station" Association="Self.FK_RezervationStation_Station">
             <End Role="Station" EntitySet="Station" />
             <End Role="RezervationStation" EntitySet="RezervationStation" />
@@ -154,9 +169,8 @@
           <Property Name="RoomNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="StatusRoom" Type="Boolean" />
           <Property Name="StationID" Type="Int32" Nullable="false" />
-          <Property Name="StartDateRoom" Type="DateTime" Precision="3" />
-          <Property Name="EndDateRoom" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Station" Relationship="Self.FK_ChangeRoom_Station" FromRole="ChangeRoom" ToRole="Station" />
+          <NavigationProperty Name="RezervationStations" Relationship="Model.FK_RezervationStation_ChangeRoom" FromRole="ChangeRoom" ToRole="RezervationStation" />
         </EntityType>
         <EntityType Name="RezervationStation">
           <Key>
@@ -171,6 +185,8 @@
           <NavigationProperty Name="Worker" Relationship="Self.FK_RezervationStation_Worker" FromRole="RezervationStation" ToRole="Worker" />
           <Property Name="StartResDate" Type="DateTime" Precision="3" />
           <Property Name="EndResDate" Type="DateTime" Precision="3" />
+          <Property Name="RoomID" Type="Int32" />
+          <NavigationProperty Name="ChangeRoom" Relationship="Model.FK_RezervationStation_ChangeRoom" FromRole="RezervationStation" ToRole="ChangeRoom" />
         </EntityType>
         <EntityType Name="Station">
           <Key>
@@ -274,7 +290,23 @@
             <End Role="Worker" EntitySet="Workers" />
             <End Role="RezervationStation" EntitySet="RezervationStations" />
           </AssociationSet>
+          <AssociationSet Name="FK_RezervationStation_ChangeRoom" Association="Model.FK_RezervationStation_ChangeRoom">
+            <End Role="ChangeRoom" EntitySet="ChangeRooms" />
+            <End Role="RezervationStation" EntitySet="RezervationStations" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_RezervationStation_ChangeRoom">
+          <End Type="Model.ChangeRoom" Role="ChangeRoom" Multiplicity="0..1" />
+          <End Type="Model.RezervationStation" Role="RezervationStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChangeRoom">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RezervationStation">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -297,14 +329,13 @@
                 <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
                 <ScalarProperty Name="StatusRoom" ColumnName="StatusRoom" />
                 <ScalarProperty Name="StationID" ColumnName="StationID" />
-                <ScalarProperty Name="StartDateRoom" ColumnName="StartDateRoom" />
-                <ScalarProperty Name="EndDateRoom" ColumnName="EndDateRoom" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RezervationStations">
             <EntityTypeMapping TypeName="Model.RezervationStation">
               <MappingFragment StoreEntitySet="RezervationStation">
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
                 <ScalarProperty Name="EndResDate" ColumnName="EndResDate" />
                 <ScalarProperty Name="StartResDate" ColumnName="StartResDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

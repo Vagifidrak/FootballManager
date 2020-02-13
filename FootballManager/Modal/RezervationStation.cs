@@ -20,9 +20,11 @@ namespace FootballManager.modal
         public int UserID { get; set; }
         public Nullable<System.DateTime> StartResDate { get; set; }
         public Nullable<System.DateTime> EndResDate { get; set; }
+        public Nullable<int> RoomID { get; set; }
     
         public virtual Station Station { get; set; }
         public virtual User User { get; set; }
         public virtual Worker Worker { get; set; }
+        public virtual ChangeRoom ChangeRoom { get; set; }
     }
 }

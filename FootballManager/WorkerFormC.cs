@@ -15,8 +15,8 @@ namespace FootballManager
     {
         Worker worky;
         FootballManagerDB DB;
-        Station selectStat=null;
-        User selectUser = null;
+        User statSelect = null;
+        RezervationStation ResStar = null;
 
         public WorkerFormC(Worker saxta)
         {
@@ -31,7 +31,7 @@ namespace FootballManager
         }
         #endregion
 
-        #region Button Reservation-Edit-Delete
+        #region Button-Reservation-Edit-Delete
         private void BtnEdDel(string txt)
         {
             if (txt == "add")
@@ -52,22 +52,27 @@ namespace FootballManager
         #endregion
 
 
-
+        #region Fill-cmb-Statium
         private void FillcmbStadium()
         {
           cmbStadium.Items.AddRange(DB.Stations.Select(st => st.StationNumber).ToArray());
         }
+        #endregion
 
+        #region Fill-cmb-Room
         private void FillcmbRoom()
         {
             cmbChangeRoom.Items.AddRange(DB.ChangeRooms.Select(ch => ch.RoomNumber).ToArray());
 
         }
-        private void WorkerFormC_Load(object sender, EventArgs e)
-        {
-            lblWelcome.Text = "Welcome to football manager";
-            lblWelcome.Visible = true;
+        #endregion
 
+        #region FilldtgStation
+
+        private void FilldtgStation()
+        {
+         
+            
             dtgStat.DataSource = DB.RezervationStations.Select(rs => new
             {
                 rs.ID,
@@ -75,16 +80,28 @@ namespace FootballManager
                 rs.User.LastName,
                 rs.User.Phone,
                 rs.Station.StationNumber,
-                rs.Station.ChangeRooms.Count,
+                rs.ChangeRoom.RoomNumber,
                 rs.StartResDate,
                 rs.EndResDate
 
             }).ToList();
             dtgStat.Columns[0].Visible = false;
+        }
+        #endregion
 
+        #region WorkerForm Load
+        private void WorkerFormC_Load(object sender, EventArgs e)
+        {
+            lblWelcome.Text = "Welcome to football manager";
+            lblWelcome.Visible = true;
+
+
+            FilldtgStation();
             FillcmbStadium();
             FillcmbRoom();
         }
+        #endregion
+
         #region IndexChanged Stadim
         private void cmbStadium_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -134,7 +151,7 @@ namespace FootballManager
                     UserID = newUser.ID,
                     StationID = StatID,
                     WorkerID= workID,
-
+                    RoomID=roomId,
                     StartResDate = StartDat,
                     EndResDate = EndDat
                 });
@@ -149,22 +166,61 @@ namespace FootballManager
 
         #endregion
 
+
+        #region doubleClick DataGridView
         private void dtgStat_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            int statid = (int)dtgStat.Rows[e.RowIndex].Cells[3].Value;
-            int userid = (int)dtgStat.Rows[e.RowIndex].Cells[0].Value;
-            string dtid =Convert.ToString(dtgStat.Rows[e.RowIndex].Cells[5].Value);
-            string selectDat = DB.RezervationStations.FirstOrDefault(dt => dt.StartResDate = dtid);// nese problem qalir bu hisseni duzeltmek
-            selectUser = DB.Users.FirstOrDefault(us => us.ID == statid);
-            selectStat = DB.Stations.FirstOrDefault(sst => sst.ID == statid);
-            cmbStadium.Text = selectStat.StationNumber;
-            cmbStadium.Text = Convert.ToString(selectStat.StationNumber);
-            cmbChangeRoom.Text = Convert.ToString(selectStat.ChangeRooms.Count);
-            txtFrsName.Text = selectUser.FirstName;
-            txtLastName.Text = selectUser.LastName;
-            txtPhone.Text = selectUser.Phone;
+            BtnEdDel("dda");
 
-            BtnEdDel("xtx");
+            int resID = (int)dtgStat.Rows[e.RowIndex].Cells[0].Value;
+
+             var selectRestor = DB.RezervationStations.FirstOrDefault(us => us.ID == resID);
+             
+             txtFrsName.Text = selectRestor.User.FirstName;
+             txtLastName.Text = selectRestor.User.LastName;
+             txtPhone.Text = selectRestor.User.Phone;
+             cmbStadium.Text = selectRestor.Station.StationNumber;
+             cmbChangeRoom.Text = selectRestor.ChangeRoom.RoomNumber;
+             dtgStart.Value = selectRestor.StartResDate.Value;
+             dtgEnd.Value = selectRestor.EndResDate.Value;
+             FilldtgStation();
+        }
+        #endregion
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            string FirstName = txtFrsName.Text;
+            string LastName = txtLastName.Text;
+            string Phone = txtPhone.Text;
+            string statNum = cmbStadium.Text;
+            string rommNum = cmbChangeRoom.Text;
+            DateTime stdt = dtgStart.Value;
+            DateTime endt = dtgEnd.Value;
+
+            int statId = DB.Stations.FirstOrDefault(st => st.StationNumber == statNum).ID;
+            int chId = DB.ChangeRooms.FirstOrDefault(ch => ch.RoomNumber == rommNum).ID;
+            
+            string[] listStat ={
+                FirstName,
+                LastName,
+                Phone,
+                statNum,
+                rommNum,
+                endt.ToString(),
+                stdt.ToString(),
+            };
+            if (MainExtansion.IsEmpty(listStat, ""))
+            {
+                statSelect.FirstName = FirstName;//Burda error cixir. 
+                statSelect.LastName = LastName;
+                statSelect.Phone = Phone;
+                dtgStart.Value = stdt;
+                dtgEnd.Value = endt;
+                ResStar.StationID = statId;
+                statSelect.ID = chId;
+                DB.SaveChanges();
+                FilldtgStation();
+            }
         }
     }
 

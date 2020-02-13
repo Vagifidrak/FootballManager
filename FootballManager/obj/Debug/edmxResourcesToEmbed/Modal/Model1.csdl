@@ -16,9 +16,8 @@
     <Property Name="RoomNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="StatusRoom" Type="Boolean" />
     <Property Name="StationID" Type="Int32" Nullable="false" />
-    <Property Name="StartDateRoom" Type="DateTime" Precision="3" />
-    <Property Name="EndDateRoom" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Station" Relationship="Self.FK_ChangeRoom_Station" FromRole="ChangeRoom" ToRole="Station" />
+    <NavigationProperty Name="RezervationStations" Relationship="Model.FK_RezervationStation_ChangeRoom" FromRole="ChangeRoom" ToRole="RezervationStation" />
   </EntityType>
   <EntityType Name="RezervationStation">
     <Key>
@@ -33,6 +32,8 @@
     <NavigationProperty Name="Worker" Relationship="Self.FK_RezervationStation_Worker" FromRole="RezervationStation" ToRole="Worker" />
     <Property Name="StartResDate" Type="DateTime" Precision="3" />
     <Property Name="EndResDate" Type="DateTime" Precision="3" />
+    <Property Name="RoomID" Type="Int32" />
+    <NavigationProperty Name="ChangeRoom" Relationship="Model.FK_RezervationStation_ChangeRoom" FromRole="RezervationStation" ToRole="ChangeRoom" />
   </EntityType>
   <EntityType Name="Station">
     <Key>
@@ -136,5 +137,21 @@
       <End Role="Worker" EntitySet="Workers" />
       <End Role="RezervationStation" EntitySet="RezervationStations" />
     </AssociationSet>
+    <AssociationSet Name="FK_RezervationStation_ChangeRoom" Association="Model.FK_RezervationStation_ChangeRoom">
+      <End Role="ChangeRoom" EntitySet="ChangeRooms" />
+      <End Role="RezervationStation" EntitySet="RezervationStations" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_RezervationStation_ChangeRoom">
+    <End Type="Model.ChangeRoom" Role="ChangeRoom" Multiplicity="0..1" />
+    <End Type="Model.RezervationStation" Role="RezervationStation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChangeRoom">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RezervationStation">
+        <PropertyRef Name="RoomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

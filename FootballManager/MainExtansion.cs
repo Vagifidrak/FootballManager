@@ -28,8 +28,5 @@ namespace FootballManager
 
             return hassPassword;
         }
-
     }
-
-
 }

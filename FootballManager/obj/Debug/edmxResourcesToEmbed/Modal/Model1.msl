@@ -17,14 +17,13 @@
           <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
           <ScalarProperty Name="StatusRoom" ColumnName="StatusRoom" />
           <ScalarProperty Name="StationID" ColumnName="StationID" />
-          <ScalarProperty Name="StartDateRoom" ColumnName="StartDateRoom" />
-          <ScalarProperty Name="EndDateRoom" ColumnName="EndDateRoom" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RezervationStations">
       <EntityTypeMapping TypeName="Model.RezervationStation">
         <MappingFragment StoreEntitySet="RezervationStation">
+          <ScalarProperty Name="RoomID" ColumnName="RoomID" />
           <ScalarProperty Name="EndResDate" ColumnName="EndResDate" />
           <ScalarProperty Name="StartResDate" ColumnName="StartResDate" />
           <ScalarProperty Name="ID" ColumnName="ID" />
