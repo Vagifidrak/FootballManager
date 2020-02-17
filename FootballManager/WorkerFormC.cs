@@ -15,7 +15,6 @@ namespace FootballManager
     {
         Worker worky;
         FootballManagerDB DB;
-        User statSelect = null;
         RezervationStation ResStar = null;
 
         public WorkerFormC(Worker saxta)
@@ -174,15 +173,15 @@ namespace FootballManager
 
             int resID = (int)dtgStat.Rows[e.RowIndex].Cells[0].Value;
 
-             var selectRestor = DB.RezervationStations.FirstOrDefault(us => us.ID == resID);
+             ResStar = DB.RezervationStations.FirstOrDefault(us => us.ID == resID);
              
-             txtFrsName.Text = selectRestor.User.FirstName;
-             txtLastName.Text = selectRestor.User.LastName;
-             txtPhone.Text = selectRestor.User.Phone;
-             cmbStadium.Text = selectRestor.Station.StationNumber;
-             cmbChangeRoom.Text = selectRestor.ChangeRoom.RoomNumber;
-             dtgStart.Value = selectRestor.StartResDate.Value;
-             dtgEnd.Value = selectRestor.EndResDate.Value;
+             txtFrsName.Text = ResStar.User.FirstName;
+             txtLastName.Text = ResStar.User.LastName;
+             txtPhone.Text = ResStar.User.Phone;
+             cmbStadium.Text = ResStar.Station.StationNumber;
+             cmbChangeRoom.Text = ResStar.ChangeRoom.RoomNumber;
+             dtgStart.Value = ResStar.StartResDate.Value;
+             dtgEnd.Value = ResStar.EndResDate.Value;
              FilldtgStation();
         }
         #endregion
@@ -211,16 +210,17 @@ namespace FootballManager
             };
             if (MainExtansion.IsEmpty(listStat, ""))
             {
-                statSelect.FirstName = FirstName;//Burda error cixir. 
-                statSelect.LastName = LastName;
-                statSelect.Phone = Phone;
+                ResStar.User.FirstName = FirstName;
+                ResStar.User.LastName = LastName;
+                ResStar.User.Phone = Phone;
                 dtgStart.Value = stdt;
                 dtgEnd.Value = endt;
                 ResStar.StationID = statId;
-                statSelect.ID = chId;
+                ResStar.RoomID= chId;
                 DB.SaveChanges();
-                FilldtgStation();
             }
+            FilldtgStation();
+
         }
     }
 

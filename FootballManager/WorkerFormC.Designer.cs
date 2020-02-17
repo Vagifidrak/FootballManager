@@ -302,7 +302,7 @@
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnEdit.ForeColor = System.Drawing.SystemColors.MenuBar;
-            this.btnEdit.Location = new System.Drawing.Point(551, 574);
+            this.btnEdit.Location = new System.Drawing.Point(551, 492);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(198, 72);
             this.btnEdit.TabIndex = 28;
