@@ -121,46 +121,53 @@ namespace FootballManager
             DateTime StartDat = dtgStart.Value;
             DateTime EndDat = dtgEnd.Value;
             User newUser;
-            if (!DB.Users.Any(us=>us.Phone==phone))
+            if(frsName == null)
             {
-               newUser= DB.Users.Add(new User
+                MessageBox.Show("xanalari doldurun");
+            }
+            else{
+                if (!DB.Users.Any(us => us.Phone == phone))
                 {
-                    FirstName = frsName,
-                    LastName = lstName,
-                    Phone = phone,
-               });
+                    newUser = DB.Users.Add(new User
+                    {
+                        FirstName = frsName,
+                        LastName = lstName,
+                        Phone = phone,
+                    });
 
+                    DB.SaveChanges();
+                }
+                else
+                {
+                    newUser = DB.Users.FirstOrDefault(us => us.Phone == phone);
+                }
+
+                int StatID = DB.Stations.FirstOrDefault(st => st.StationNumber == stati).ID;
+                int roomId = DB.ChangeRooms.FirstOrDefault(ch => ch.RoomNumber == room).ID;
+                int workID = worky.ID;
+
+                RezervationStation newReserv;
+                if (!DB.RezervationStations.Any(rs => rs.StartResDate == StartDat))
+                {
+                    newReserv = DB.RezervationStations.Add(new RezervationStation
+                    {
+
+                        UserID = newUser.ID,
+                        StationID = StatID,
+                        WorkerID = workID,
+                        RoomID = roomId,
+                        StartResDate = StartDat,
+                        EndResDate = EndDat
+                    });
+                }
+                else
+                {
+                    newReserv = DB.RezervationStations.FirstOrDefault(rst => rst.StartResDate == StartDat);
+                }
+                MessageBox.Show("Add new Reservation success", "sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DB.SaveChanges();
-            }
-            else
-            {
-                newUser = DB.Users.FirstOrDefault(us => us.Phone == phone);
-            }
 
-            int StatID = DB.Stations.FirstOrDefault(st => st.StationNumber == stati).ID;
-            int roomId = DB.ChangeRooms.FirstOrDefault(ch => ch.RoomNumber == room).ID;
-            int workID = worky.ID;
-
-            RezervationStation newReserv;
-            if (!DB.RezervationStations.Any(rs => rs.StartResDate == StartDat))
-            {
-                newReserv = DB.RezervationStations.Add(new RezervationStation
-                {
-
-                    UserID = newUser.ID,
-                    StationID = StatID,
-                    WorkerID= workID,
-                    RoomID=roomId,
-                    StartResDate = StartDat,
-                    EndResDate = EndDat
-                });
             }
-            else
-            {
-                newReserv = DB.RezervationStations.FirstOrDefault(rst => rst.StartResDate == StartDat);
-            }
-            MessageBox.Show("Add new Reservation success","sucess",MessageBoxButtons.OK,MessageBoxIcon.Information);
-            DB.SaveChanges();
         }
 
         #endregion
